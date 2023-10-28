@@ -3,6 +3,7 @@ module Related
 using JSON3
 using StructTypes
 using Dates
+using PrecompileTools
 using StaticArrays
 
 const topn = 5
@@ -108,6 +109,12 @@ function main()
         JSON3.write(f, all_related_posts)
     end
 end
+
+@compile_workload begin
+    print("Precompiling main workload: ")
+    main()
+end
+
 
 
 end # module Related
